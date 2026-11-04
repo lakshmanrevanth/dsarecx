@@ -41,7 +41,7 @@ export const siteConfig = {
   host: hostOf(url),
   githubRepo,
   githubUrl: githubRepo ? `https://github.com/${githubRepo}` : null,
-  license: 'GPL-3.0',
+  license: 'MIT',
 } as const;
 
 /** Default sender for transactional email; EMAIL_FROM overrides. */
