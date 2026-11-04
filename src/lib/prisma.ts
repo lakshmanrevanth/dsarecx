@@ -3,7 +3,7 @@
 // Next.js hot reloads re-evaluate modules in development, which would create
 // a new client (and connection pool) on every edit. Keeping the instance on
 // globalThis outside production means exactly one pool per process.
-// Runtime queries use DATABASE_URL (Neon's pooled endpoint); DIRECT_URL is
+// Runtime queries use DATABASE_URL (Neon's pooled endpoint); DATABASE_URL_UNPOOLED is
 // only for migrations.
 
 import { PrismaClient } from '@prisma/client';

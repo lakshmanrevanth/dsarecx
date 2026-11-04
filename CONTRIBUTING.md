@@ -26,7 +26,7 @@ You need a Neon Postgres database for local development (the free tier is fine):
 
 ```env
 DATABASE_URL="your-pooled-neon-connection-string"
-DIRECT_URL="your-direct-neon-connection-string"
+DATABASE_URL_UNPOOLED="your-direct-neon-connection-string"
 AUTH_SECRET="generate with: openssl rand -base64 32"
 ```
 

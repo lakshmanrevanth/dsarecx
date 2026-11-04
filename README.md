@@ -112,12 +112,12 @@ Neon gives you a **pooled** endpoint (through PgBouncer) and a **direct** one. T
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")   // pooled: every runtime query
-  directUrl = env("DIRECT_URL")     // direct: migrations only
+  directUrl = env("DATABASE_URL_UNPOOLED")     // direct: migrations only
 }
 ```
 
 - **`DATABASE_URL`**: the pooled string (the hostname contains `-pooler`). Every API route and Server Component query uses it.
-- **`DIRECT_URL`**: the non-pooled string. PgBouncer's transaction mode doesn't support some DDL that migrations need, so only `prisma migrate` and `prisma db push` use it, never the running app.
+- **`DATABASE_URL_UNPOOLED`**: the non-pooled string. PgBouncer's transaction mode doesn't support some DDL that migrations need, so only `prisma migrate` and `prisma db push` use it, never the running app.
 
 ### The second half: one PrismaClient
 
@@ -238,7 +238,7 @@ npm install
 
 ```env
 DATABASE_URL="postgresql://user:password@endpoint-pooler.region.neon.tech/neondb?sslmode=require"
-DIRECT_URL="postgresql://user:password@endpoint.region.neon.tech/neondb?sslmode=require"
+DATABASE_URL_UNPOOLED="postgresql://user:password@endpoint.region.neon.tech/neondb?sslmode=require"
 AUTH_SECRET="generate with: openssl rand -base64 32"
 GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
@@ -265,7 +265,7 @@ Open [localhost:3000](http://localhost:3000). Run the unit tests with `npm test`
 
 ```env
 DATABASE_URL="postgresql://postgres:postgres@localhost:5433/dsarecx"
-DIRECT_URL="postgresql://postgres:postgres@localhost:5433/dsarecx"
+DATABASE_URL_UNPOOLED="postgresql://postgres:postgres@localhost:5433/dsarecx"
 ```
 
 Then `npm run db:migrate` once, and `npm run dev`. Use Neon (above) for anything deployed.
