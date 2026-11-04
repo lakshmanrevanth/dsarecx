@@ -30,7 +30,7 @@ DATABASE_URL_UNPOOLED="your-direct-neon-connection-string"
 AUTH_SECRET="generate with: openssl rand -base64 32"
 ```
 
-Google and GitHub OAuth are optional locally, because email + password sign-in works without them. Without `RESEND_API_KEY`, verification codes are printed to the dev server log.
+GitHub sign-in is optional locally, because email + password sign-in works without them. Without `RESEND_API_KEY`, verification codes are printed to the dev server log.
 
 ```bash
 npx prisma db push

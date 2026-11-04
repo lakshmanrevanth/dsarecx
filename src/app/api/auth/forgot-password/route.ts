@@ -12,7 +12,7 @@ import { inCooldown, issueCode, normalizeEmail } from '../codes';
 const GENERIC_RESPONSE = {
   success: true,
   message:
-    'If an account with a password exists for this email, a reset code has been sent. If you signed up with Google or GitHub, sign in with that instead.',
+    'If an account with a password exists for this email, a reset code has been sent. If you signed up with GitHub, sign in with GitHub instead.',
 };
 
 export async function POST(req: NextRequest) {

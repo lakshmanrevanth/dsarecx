@@ -10,7 +10,7 @@ import { safeCallbackUrl } from '@/lib/safe-redirect';
 
 export type AuthTab = 'signin' | 'signup';
 export type AuthMode = 'form' | 'verify' | 'forgot' | 'reset';
-export type OAuthProvider = 'google' | 'github';
+export type OAuthProvider = 'github';
 
 export const RESEND_COOLDOWN_SEC = 60;
 export const MIN_PASSWORD = 8;

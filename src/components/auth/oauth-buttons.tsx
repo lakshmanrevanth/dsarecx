@@ -1,17 +1,16 @@
 'use client';
 
 import { LoaderCircle } from 'lucide-react';
-import { GitHubIcon, GoogleIcon } from '@/components/landing/primitives';
+import { GitHubIcon } from '@/components/landing/primitives';
 import type { AuthFlow, OAuthProvider } from './use-auth-flow';
 
 const PROVIDERS: { id: OAuthProvider; label: string; icon: React.ReactNode }[] = [
-  { id: 'google', label: 'Google', icon: <GoogleIcon size={17} /> },
   { id: 'github', label: 'GitHub', icon: <GitHubIcon size={17} /> },
 ];
 
 export function OAuthButtons({ flow }: { flow: AuthFlow }) {
   return (
-    <div className="grid grid-cols-2 gap-2.5">
+    <div className="grid grid-cols-1 gap-2.5">
       {PROVIDERS.map((p) => (
         <button
           key={p.id}

@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           body: (
             <>
               <p>
-                Your name, email address and avatar when you sign up with email and password, Google or GitHub. Passwords are stored
+                Your name, email address and avatar when you sign up with email and password or GitHub. Passwords are stored
                 only as a salted hash.
               </p>
               <p>

@@ -85,7 +85,7 @@ Every tracked problem climbs a 4-step ladder. The defaults are `LADDER_DAYS = [3
 - **Daily review.** Recall → reveal notes → rate. Includes focus mode, keyboard shortcuts, snooze (1d/3d/1w), retire, and undo for today's ratings.
 - **AI recall questions.** When `ANTHROPIC_API_KEY` is set, Claude writes recall questions for a problem or concept.
 - **Import and export.** CSV, Excel and JSON import, plus a full JSON backup (v2, including the to-learn list) that restores everything with Skip, Merge or Overwrite. CSV export guards against spreadsheet formulas.
-- **Auth.** NextAuth v5 with Google, GitHub and email + password. Email codes lock after 5 wrong tries. Every auth route has per-IP and per-email rate limits, and responses never reveal whether an account exists. Redirects after login stay on the same site, and a password change ends other sessions within 5 minutes. Cross-provider account linking removes an unverified password, which stops a pre-registration takeover.
+- **Auth.** NextAuth v5 with GitHub and email + password. Email codes lock after 5 wrong tries. Every auth route has per-IP and per-email rate limits, and responses never reveal whether an account exists. Redirects after login stay on the same site, and a password change ends other sessions within 5 minutes. Cross-provider account linking removes an unverified password, which stops a pre-registration takeover.
 
 ---
 
@@ -240,8 +240,6 @@ npm install
 DATABASE_URL="postgresql://user:password@endpoint-pooler.region.neon.tech/neondb?sslmode=require"
 DATABASE_URL_UNPOOLED="postgresql://user:password@endpoint.region.neon.tech/neondb?sslmode=require"
 AUTH_SECRET="generate with: openssl rand -base64 32"
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
 GITHUB_CLIENT_ID=""
 GITHUB_CLIENT_SECRET=""
 RESEND_API_KEY=""                 # verification and password-reset emails (codes are logged in dev without it)

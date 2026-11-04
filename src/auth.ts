@@ -2,7 +2,6 @@ import NextAuth, { CredentialsSignin } from 'next-auth'
 import type { Account, Profile, User } from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import GoogleProvider from 'next-auth/providers/google'
 import GitHubProvider from 'next-auth/providers/github'
 import bcrypt from 'bcryptjs'
 import { prisma } from '@/lib/prisma'
@@ -69,13 +68,10 @@ async function authorizeCredentials(credentials: Partial<Record<string, unknown>
  * OAuth sign-in for an email that may already have an account. Links the
  * provider to that account, but only for provider-verified emails, and removes
  * any password set by someone who never proved they own the email (the
- * "sign up first, wait for the owner to use Google" takeover).
+ * "sign up first, wait for the owner to use GitHub" takeover).
  */
-async function allowOAuthSignIn(user: User, account: Account, profile: Profile | undefined): Promise<boolean> {
+async function allowOAuthSignIn(user: User, account: Account, _profile: Profile | undefined): Promise<boolean> {
   if (!user.email) return false
-
-  // The email is trusted for account linking, so Google must have verified it.
-  if (account.provider === 'google' && profile?.email_verified !== true) return false
 
   const email = normalizeEmail(user.email)
   const existing = await prisma.user.findUnique({ where: { email }, include: { accounts: true } })
@@ -140,10 +136,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     error: '/auth/login',
   },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
