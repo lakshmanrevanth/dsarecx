@@ -1,5 +1,5 @@
 // Account emails that carry a 6-digit code: signup verification and password
-// reset. Without RESEND_API_KEY the code is printed to the server log in
+// reset. Without an email provider (see email-layout.ts) the code is printed to the server log in
 // development; in production that is never done (logs are shared and stored)
 // and the send reports an error instead.
 
@@ -10,6 +10,7 @@ import {
   emailGreeting,
   emailLayout,
   emailParagraph,
+  hasEmailProvider,
   sendEmail,
 } from '@/lib/email-layout';
 
@@ -27,17 +28,17 @@ type CodeEmail = {
 };
 
 function hasProvider(): boolean {
-  return Boolean(process.env.RESEND_API_KEY);
+  return hasEmailProvider();
 }
 
 async function sendCodeEmail(mail: CodeEmail): Promise<SendResult> {
   if (!hasProvider()) {
     if (process.env.NODE_ENV === 'production') {
-      console.error(`[mail] RESEND_API_KEY is not set; could not send ${mail.label} email.`);
+      console.error(`[mail] No email provider (SMTP_USER/SMTP_PASS or RESEND_API_KEY); could not send ${mail.label} email.`);
       return { success: false, error: 'Email is not configured' };
     }
     console.log(
-      `\n[${siteConfig.name.toUpperCase()} ${mail.label}] Code for ${mail.email}: ${mail.code} (expires in 10 minutes). Set RESEND_API_KEY to send real emails.\n`
+      `\n[${siteConfig.name.toUpperCase()} ${mail.label}] Code for ${mail.email}: ${mail.code} (expires in 10 minutes). Set SMTP_USER/SMTP_PASS or RESEND_API_KEY to send real emails.\n`
     );
     return { success: true };
   }
