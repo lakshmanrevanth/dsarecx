@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const CHANNELS = [
+  { label: 'Developer on GitHub', value: `github.com/${siteConfig.ownerGithub}`, href: siteConfig.ownerGithubUrl },
   { label: 'Email', value: siteConfig.contactEmail, href: `mailto:${siteConfig.contactEmail}` },
   ...(siteConfig.githubUrl
     ? [{ label: 'Issues & pull requests', value: siteConfig.githubUrl.replace(/^https:\/\//, ''), href: `${siteConfig.githubUrl}/issues` }]

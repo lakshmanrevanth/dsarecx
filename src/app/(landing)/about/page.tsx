@@ -57,7 +57,11 @@ export default function AboutPage() {
           title: 'Open source',
           body: (
             <p>
-              {name} is made by {siteConfig.owner}. It is free and open source under {siteConfig.license}, and your data exports in
+              {name} is made by{' '}
+              <a href={siteConfig.ownerGithubUrl} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 hover:text-ember">
+                {siteConfig.owner}
+              </a>
+              . It is free and open source under {siteConfig.license}, and your data exports in
               full whenever you want it.
             </p>
           ),

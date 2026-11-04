@@ -51,7 +51,7 @@ export function Footer() {
                   href={siteConfig.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${siteConfig.name} on GitHub`}
+                  aria-label={`${siteConfig.name} source code on GitHub`}
                   className="hover:text-foreground"
                 >
                   <GitHubIcon size={16} />
@@ -77,7 +77,11 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-border pt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-faint sm:flex-row sm:items-center sm:justify-between">
           <span>
-            © {year} {siteConfig.owner} · {siteConfig.license}
+            © {year}{' '}
+            <a href={siteConfig.ownerGithubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+              {siteConfig.owner} (@{siteConfig.ownerGithub})
+            </a>{' '}
+            · {siteConfig.license}
           </span>
           <span>Not affiliated with LeetCode or any platform listed</span>
         </div>

@@ -18,7 +18,11 @@ export function parseRepo(value: string | undefined): string | null {
   return /^[\w.-]+\/[\w.-]+$/.test(v) ? v : null;
 }
 
-const githubRepo = parseRepo(process.env.NEXT_PUBLIC_GITHUB_REPO);
+/** The public source repository. NEXT_PUBLIC_GITHUB_REPO overrides it (e.g. for a fork). */
+const githubRepo = parseRepo(process.env.NEXT_PUBLIC_GITHUB_REPO) ?? 'lakshmanrevanth/dsarecx';
+
+/** The developer's GitHub profile: the main contact for the project. */
+const ownerGithub = 'lakshmanrevanth';
 
 export const siteConfig = {
   name: 'dsarecx',
@@ -31,6 +35,8 @@ export const siteConfig = {
     'Spaced repetition for DSA problems and system design. dsarecx schedules each review right before you would forget, so patterns stick for your interviews.',
   owner: 'Lakshman Revanth Reddy',
   contactEmail: 'revanth3527@gmail.com',
+  ownerGithub,
+  ownerGithubUrl: `https://github.com/${ownerGithub}`,
   url,
   host: hostOf(url),
   githubRepo,

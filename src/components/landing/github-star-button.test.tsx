@@ -47,10 +47,9 @@ describe('GitHubStarButton', () => {
     expect(markup).toContain('https://github.com/owner/repo');
   });
 
-  it('renders nothing when no repo is configured', async () => {
+  it('falls back to the dsarecx repository when none is configured', async () => {
     const { GitHubStarButton } = await loadModule('');
-    expect(renderToStaticMarkup(<GitHubStarButton />)).toBe('');
-    expect(renderToStaticMarkup(<GitHubStarButton variant="sidebar" />)).toBe('');
+    expect(renderToStaticMarkup(<GitHubStarButton />)).toContain('https://github.com/lakshmanrevanth/dsarecx');
   });
 
   it('formats star counts compactly', async () => {

@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     'Coding interview preparation',
     'Forgetting curve',
   ],
-  authors: [{ name: siteConfig.owner }],
+  authors: [{ name: siteConfig.owner, url: siteConfig.ownerGithubUrl }],
   creator: siteConfig.owner,
   category: 'Education & Developer Tools',
   formatDetection: { email: false, address: false, telephone: false },
@@ -123,7 +123,7 @@ const jsonLd = {
         'System design concepts and learning paths',
         'Daily revision queue, streaks, heatmap and stats',
       ],
-      author: { '@type': 'Person', name: siteConfig.owner },
+      author: { '@type': 'Person', name: siteConfig.owner, url: siteConfig.ownerGithubUrl },
     },
     {
       '@type': 'Organization',
